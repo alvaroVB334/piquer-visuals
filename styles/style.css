@@ -592,3 +592,63 @@ header {
     font-size: 1.2rem;
     font-family: var(--font-body);
 }
+
+/* --- FIX DE VISIBILIDAD EN MÓVIL (375px) --- */
+
+@media (max-width: 768px) {
+    /* 1. Ajuste del Grid: Pasamos de 12 columnas a 1 sola */
+    .projects-grid {
+        display: block !important; /* Evitamos conflictos de Flexbox/Grid */
+        padding: 0;
+    }
+
+    /* 2. Forzar altura en los contenedores de imagen */
+    .project-item {
+        width: 100% !important;
+        margin-bottom: 3rem !important;
+        height: auto !important; /* Dejamos que el hijo mande */
+        display: block !important;
+    }
+
+    .img-container {
+        position: relative;
+        width: 100%;
+        /* Esto es clave: si Safari no ve altura, no pinta nada */
+        aspect-ratio: 4 / 5; /* Formato vertical editorial */
+        min-height: 400px; 
+        background: #111; /* Fondo para que sepas si el contenedor está ahí */
+        overflow: hidden;
+    }
+
+    .img-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100% !important;
+        object-fit: cover;
+        opacity: 1 !important; /* Forzamos visibilidad */
+        visibility: visible !important;
+    }
+
+    /* 3. El Hero en móvil suele fallar por el height: 100vh */
+    #hero {
+        height: 80vh; /* Un poco menos para dejar ver el scroll */
+        min-height: 500px;
+    }
+
+    .hero-image-wrapper {
+        height: 100% !important;
+    }
+}
+
+/* 4. Fix para el efecto de revelado (Reveal Animation) */
+/* Si el JS no se ejecuta, las imágenes se quedarían invisibles. 
+   Esto asegura que en móvil siempre se vean por si acaso. */
+@media (max-width: 768px) {
+    .reveal-img .img-container {
+        clip-path: none !important;
+        -webkit-clip-path: none !important;
+        opacity: 1 !important;
+    }
+}
