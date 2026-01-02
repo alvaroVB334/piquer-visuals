@@ -1,0 +1,594 @@
+/* --- 1. Variables & Reset --- */
+:root {
+    --bg-color: #050505;       /* Negro puro para contraste máximo */
+    --text-primary: #ffffff;
+    --text-muted: #888888;
+    --accent: #2e2e2e;         /* Gris oscuro técnico */
+    --highlight: #ffffff;      /* Blanco puro para acentos */
+    
+    --font-display: 'Archivo Black', sans-serif;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    --easing: cubic-bezier(0.65, 0, 0.35, 1); /* Movimiento deportivo rápido/suave */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* Custom cursor */
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+ul { list-style: none; }
+a { text-decoration: none; color: inherit; }
+
+/* --- 2. Custom Cursor (Target Sight) --- */
+.cursor-target {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-primary);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    mix-blend-mode: exclusion;
+}
+
+.cursor-target::after { /* Cruz central */
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px; height: 4px;
+    background: var(--text-primary);
+    border-radius: 50%;
+}
+
+body.hovered .cursor-target {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.1);
+    border-color: transparent;
+}
+
+/* --- 3. Header --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    mix-blend-mode: difference;
+}
+
+.brand {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    line-height: 0.9;
+}
+
+.brand-name { display: block; font-size: 1.5rem; letter-spacing: -1px; }
+.brand-sub { font-size: 0.8rem; letter-spacing: 2px; color: #ccc; }
+
+.nav-links { display: flex; gap: 3rem; }
+.nav-links a {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.cta-button {
+    border: 1px solid #fff;
+    padding: 0.8rem 1.5rem;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover { background: #fff; color: #000; }
+
+/* --- 4. Hero Section --- */
+#hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image-wrapper {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+}
+
+.hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2);
+    transform: scale(1.1);
+    transition: transform 0.5s ease-out; /* JavaScript will drive this */
+}
+
+.overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(5,5,5,0.3), rgba(5,5,5,0.8));
+}
+
+.hero-typography {
+    text-align: center;
+    z-index: 2;
+    mix-blend-mode: overlay;
+}
+
+.hero-typography h1 {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 15vw, 12rem);
+    line-height: 0.8;
+    letter-spacing: -5px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.hero-sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.hero-sub p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.hero-sub .line {
+    width: 40px; height: 1px; background: #fff;
+}
+
+.scroll-trigger {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.7rem;
+    font-family: var(--font-display);
+    gap: 0.5rem;
+}
+
+.scroll-trigger .bar {
+    width: 1px; height: 40px; background: #fff;
+    animation: growBar 2s infinite;
+}
+
+@keyframes growBar {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* --- 5. Ticker (Marquee) --- */
+.ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    color: #000;
+    padding: 0.8rem 0;
+    white-space: nowrap;
+}
+
+.ticker { display: inline-block; animation: marquee 20s linear infinite; }
+.ticker-item {
+    display: inline-block;
+    padding-right: 2rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+@keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
+
+/* --- 6. Work (Asymmetric Grid) --- */
+#work { padding: 8rem 5%; }
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 6rem;
+    border-bottom: 1px solid #222;
+    padding-bottom: 1rem;
+}
+
+.section-title h2 {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.deco-number {
+    font-family: var(--font-body);
+    font-weight: bold;
+    color: var(--text-muted);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+}
+
+.project-item { position: relative; margin-bottom: 4rem; }
+.project-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+}
+
+.project-item:hover img { filter: grayscale(0%); }
+
+/* Grid logic */
+.item-wide { grid-column: 1 / span 8; height: 500px; }
+.item-tall { grid-column: 10 / span 3; height: 600px; margin-top: 100px; }
+.item-offset { grid-column: 2 / span 5; height: 600px; }
+.item-normal { grid-column: 8 / span 5; height: 400px; align-self: end; }
+
+.project-info-external {
+    position: absolute;
+    right: -200px;
+    bottom: 50px;
+    width: 180px;
+    text-align: left;
+}
+.project-info-external h4 { font-family: var(--font-display); text-transform: uppercase; margin-bottom: 0.5rem; }
+.project-info-external p { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Overlay on Hover */
+.project-overlay {
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; padding: 1.5rem;
+    height: 50%; /* Ocupa la mitad inferior para el degradado */
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    justify-content: flex-end;  
+    opacity: 0; transition: opacity 0.3s;
+}
+.project-item:hover .project-overlay { opacity: 1; }
+
+/* Ajuste específico para que los títulos no se vean cortados */
+.project-overlay h3 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    margin: 0;
+    line-height: 1;
+}
+.project-overlay p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+}
+
+.project-overlay h3 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.5rem; }
+.project-overlay p { font-family: var(--font-serif); font-style: italic; }
+
+
+/* --- 7. Vision (About) --- */
+#vision {
+    padding: 10rem 15%;
+    display: flex;
+    justify-content: center;
+    background: #080808;
+}
+
+.vision-text { text-align: left; position: relative; }
+.vision-text .label { color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; font-size: 0.8rem; }
+.vision-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+.vision-text em { font-family: var(--font-serif); color: var(--text-muted); }
+.vision-text p {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: #ccc;
+    max-width: 600px;
+}
+
+.signature-img {
+    position: absolute;
+    right: -150px;
+    top: 5%;
+    width: 450px;
+    height: 467px;
+    object-fit: cover;
+    opacity: 0.5;
+    z-index: -1;
+    filter: grayscale(100%);
+}
+
+/* --- 8. Services (Swiss List) --- */
+#services { padding: 6rem 5%; }
+.section-header-row { display: flex; justify-content: space-between; border-bottom: 2px solid #fff; padding-bottom: 1rem; margin-bottom: 2rem;}
+.section-header-row h2 { font-family: var(--font-display); font-size: 2rem; text-transform: uppercase;}
+
+.service-row {
+    display: flex;
+    align-items: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid #333;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-row::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--easing);
+    z-index: -1;
+}
+
+.service-row:hover::before { transform: scaleX(1); }
+.service-row:hover { color: #000; }
+.service-row:hover .num, .service-row:hover p { color: #333; }
+
+.num { font-family: var(--font-display); font-size: 1.5rem; margin-right: 4rem; color: #333; }
+.service-name { flex: 1; }
+.service-name h3 { font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 0.5rem; }
+.service-name p { font-family: var(--font-serif); font-size: 1.1rem; color: #888; }
+.arrow { font-size: 2rem; margin-right: 2rem; }
+
+/* --- 9. Contact --- */
+#contact {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.contact-wrapper h2 {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 2rem;
+}
+
+.big-mail {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 5rem);
+    text-transform: uppercase;
+    border-bottom: 4px solid transparent;
+    transition: border 0.3s;
+}
+
+.big-mail:hover { border-bottom: 4px solid #fff; }
+
+.footer-meta {
+    margin-top: 4rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* --- Animaciones --- */
+
+/* Clase para revelar imagenes como persiana */
+.img-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex; /* Ayuda a alinear el contenido */
+}
+
+
+.reveal-img .img-container {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.2s var(--easing);
+}
+
+.reveal-img.active .img-container {
+    clip-path: inset(0 0 0 0);
+}
+
+/* Reveal Text Fade Up */
+.reveal-text { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+.reveal-text.active { opacity: 1; transform: translateY(0); }
+
+/* Reveal Borders */
+.reveal-border { border-bottom: 1px solid transparent; transition: border 0.8s; }
+.reveal-border.active { border-bottom: 1px solid #333; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .projects-grid { display: flex; flex-direction: column; }
+    .project-item { width: 100%; height: auto !important; margin-bottom: 2rem; }
+    .project-info-external { position: relative; right: auto; bottom: auto; margin-top: 1rem; width: 100%; }
+    .signature-img { display: none; }
+}
+/* --- OPTIMIZACIÓN RESPONSIVE AVANZADA --- */
+
+@media (max-width: 1024px) {
+    header {
+        padding: 1.5rem 2rem;
+    }
+
+    .nav-links {
+        display: none; /* Escondemos links para un menú limpio en tablet/móvil */
+    }
+
+    .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* En móvil, todas las fotos ocupan el ancho total para lucir el detalle */
+    .project-item {
+        width: 100% !important;
+        height: 60vh !important;
+        margin-top: 0 !important;
+        grid-column: auto !important;
+    }
+
+    .project-info-external {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0 1rem;
+    }
+
+    .vision-text h2 {
+        font-size: 2.5rem;
+    }
+
+    .signature-img {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajuste de Hero para móviles */
+    .hero-typography h1 {
+        font-size: 18vw; /* Texto masivo pero controlado */
+        letter-spacing: -2px;
+    }
+
+    .hero-sub p {
+        font-size: 1.1rem;
+    }
+
+    /* Ocultar cursor en dispositivos táctiles */
+    .cursor-target {
+        display: none;
+    }
+
+    * {
+        cursor: auto !important;
+    }
+
+    /* Ticker más rápido en móvil para dar dinamismo */
+    .ticker-item {
+        font-size: 0.8rem;
+    }
+
+    /* Ajuste de Secciones */
+    #work, #vision, #services, #contact {
+        padding: 4rem 1.5rem;
+    }
+
+    .section-title h2 {
+        font-size: 2.5rem;
+    }
+
+    /* Lista de servicios simplificada para pulgares */
+    .service-row {
+        padding: 2rem 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .num {
+        margin-right: 0;
+        font-size: 1rem;
+    }
+
+    .arrow {
+        display: none; /* Menos ruido visual */
+    }
+
+    .big-mail {
+        font-size: 7vw;
+        word-break: break-all; /* Evita que el mail rompa el layout */
+    }
+}
+
+/* Soporte para pantallas con muesca (Notch) */
+@supports (padding: env(safe-area-inset-top)) {
+    header {
+        padding-top: env(safe-area-inset-top);
+        padding-left: calc(env(safe-area-inset-left) + 1.5rem);
+        padding-right: calc(env(safe-area-inset-right) + 1.5rem);
+    }
+    #contact {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+.more-gallery-trigger {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.btn-more-plus {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    transition: all 0.4s var(--easing);
+}
+
+.btn-more-plus:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+.btn-more-plus .plus {
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+}

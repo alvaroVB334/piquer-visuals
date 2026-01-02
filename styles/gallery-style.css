@@ -1,0 +1,138 @@
+.gallery-page {
+    background-color: #0a0a0a;
+}
+
+#archive-main {
+    padding: 10rem 5% 5rem;
+    min-height: 100vh;
+}
+
+.archive-header {
+    margin-bottom: 4rem;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 2rem;
+}
+
+.archive-header h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.archive-header p {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Grid Uniforme */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+/* Grid Limpio y Rápido */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem; /* Espaciado más ajustado para ver más contenido */
+    margin-bottom: 4rem;
+}
+
+.grid-item {
+    aspect-ratio: 1 / 1;
+    background-color: #000; /* Fondo negro sólido mientras carga */
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Eliminados: filtros de escala de grises y transiciones pesadas */
+    display: block; 
+}
+
+/* Eliminamos cualquier animación de entrada que retarde la visualización */
+.reveal-img {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+}
+
+/* Paginación Minimalista */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #1a1a1a;
+}
+
+.page-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    border: 1px solid transparent;
+    color: #444;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    color: #fff;
+}
+
+.page-link.active {
+    border-color: #fff;
+    color: #fff;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+}
+
+/* Animación del Skeleton */
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.grid-item.loading {
+    background: #1a1a1a;
+    background-image: linear-gradient(
+        90deg, 
+        #1a1a1a 0px, 
+        #252525 40px, 
+        #1a1a1a 80px
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 2px; /* Opcional, para suavizar */
+}
+
+/* Escondemos la imagen mientras carga para que no aparezca "por trozos" */
+.grid-item img {
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+}
+
+/* Clase que aplicaremos cuando la imagen esté lista */
+.grid-item.loaded img {
+    opacity: 1;
+}
+
+.grid-item.loaded {
+    background: none;
+    animation: none;
+}

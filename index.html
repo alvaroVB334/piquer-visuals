@@ -1,14 +1,190 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piquer Visuals | High Performance Photography</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Inter:wght@300;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+
+    <div class="cursor-target"></div>
+
+    <header id="main-header">
+        <div class="brand">
+            <span class="brand-name">PIQUER</span>
+            <span class="brand-sub">VISUALS</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#work" class="hover-link">Galería</a></li>
+                <li><a href="#vision" class="hover-link">Sobre mi</a></li>
+                <li><a href="#services" class="hover-link">Servicios</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="cta-button">Contacto</a>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop"
+                    alt="Athlete Focus" class="hero-img">
+                <div class="overlay"></div>
+            </div>
+
+            <div class="hero-typography">
+                <h1 class="glitch-text" data-text="MOMENTUM">MOMENTUM</h1>
+                <div class="hero-sub">
+                    <span class="line"></span>
+                    <p>High Performance Photography</p>
+                    <span class="line"></span>
+                </div>
+            </div>
+
+            <div class="scroll-trigger">
+                <span>01</span>
+                <div class="bar"></div>
+                <span>SCROLL</span>
+            </div>
+        </section>
+
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <div class="ticker-item">MOTORSPORT — TENNIS — ATHLETICS — FOOTBALL — CAMPAIGNS — EDITORIAL —</div>
+                <div class="ticker-item">MOTORSPORT — TENNIS — ATHLETICS — FOOTBALL — CAMPAIGNS — EDITORIAL —</div>
+            </div>
+        </div>
+
+        <section id="work">
+            <div class="section-title reveal-text">
+                <h2>Galería</h2>
+                <span class="deco-number">/// 01</span>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-item item-wide reveal-img">
+                    <div class="img-container">
+                        <img src="../images/2Q5A2581.webp"
+                            alt="F1 Racing">
+                        <div class="project-overlay">
+                            <h3>Grand Prix</h3>
+                            <p>Monaco, 2024</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-item item-tall reveal-img delay-1">
+                    <div class="img-container">
+                        <img src="../images/2Q5A8716.webp"
+                            alt="Boxing Training">
+                        <div class="project-overlay">
+                            <h3>The Fight</h3>
+                            <p>Editorial Campaign</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-item item-offset reveal-img">
+                    <div class="img-container">
+                        <img src="../images/2Q5A6609-3.webp"
+                            alt="Tennis Serve">
+                        <div class="project-overlay">
+                            <h3>Clay Season</h3>
+                            <p>Roland Garros</p>
+                        </div>
+                    </div>
+                    <div class="project-info-external">
+                        <h4>Fuerza & Precisión</h4>
+                        <p>Capturando la tensión muscular en el milisegundo exacto del impacto.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="more-gallery-trigger reveal-text">
+                <a href="gallery.html" class="btn-more-plus">
+                    <span class="text">Mostrar más</span>
+                    <span class="plus">+</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="vision">
+            <div class="vision-content">
+                <div class="vision-text reveal-text">
+                    <h3 class="label">Acerca de mi</h3>
+                    <h2>No capturo el juego.<br>Capturo la <em>intensidad</em>.</h2>
+                    <p>En un mundo saturado de imágenes, la fotografía deportiva debe trascender la documentación. Mi
+                        enfoque busca la estética del esfuerzo, la soledad del atleta y la geometría del movimiento. De
+                        la pista a la editorial.</p>
+                    <img src="../images/2Q5A9733 - 02-01-2026 14-18-59.webp"
+                        class="signature-img" alt="Photographer in action">
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="section-header-row">
+                <h2>Servicios</h2>
+                <span class="deco-number">/// 02</span>
+            </div>
+
+            <div class="service-list">
+                <a href="#contact">
+                    <div class="service-row reveal-border">
+                        <span class="num">01</span>
+                        <div class="service-name">
+                            <h3>Sesiones de Retrato</h3>
+                            <p>Retratos de fotografías deportivas en sesiones.</p>
+                        </div>
+                        <span class="arrow">→</span>
+                    </div>
+                </a>
+                <a href="#contact">
+                    <div class="service-row reveal-border">
+                        <span class="num">02</span>
+                        <div class="service-name">
+                            <h3>Fotografía Editorial</h3>
+                            <p>Cobertura integral en campo. Acción, banquillo y ambiente.</p>
+                        </div>
+                        <span class="arrow">→</span>
+                    </div>
+                </a>
+                <a href="#contact">
+                    <div class="service-row reveal-border">
+                        <span class="num">03</span>
+                        <div class="service-name">
+                            <h3>Servicios Comerciales y Publicitarios</h3>
+                            <p>Dirección artistica y de fotografía para comercios y publicidad.</p>
+                        </div>
+                        <span class="arrow">→</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="contact-wrapper reveal-text">
+                <h2>Let's create<br>Legacy.</h2>
+                <a href="mailto:piquer.visuals@gmail.com" class="big-mail">piquer.visuals@gmail.com</a>
+                <div class="footer-meta">
+                    <span>Valencia / Worldwide</span>
+                    <span>&copy; 2026 Piquer Visuals</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="scripts/main.js"></script>
 </body>
+
 </html>
