@@ -17,8 +17,7 @@ const imageFiles = [
     "2Q5A7942.webp", "2Q5A8007-2.webp", "2Q5A8116.webp", "2Q5A8226.webp",
     "2Q5A8252.webp", "2Q5A8287.webp", "2Q5A8289.webp", "2Q5A8386.webp",
     "2Q5A8600.webp", "2Q5A8602-2.webp", "2Q5A8651.webp", "2Q5A8659.webp",
-    "2Q5A8663-2.webp", "2Q5A8663.webp", "2Q5A8665.webp", "2Q5A8701.webp",
-    "2Q5A8716.webp", "2Q5A8757.webp", "2Q5A9043.webp", "2Q5A9593.webp",
+    "2Q5A8663-2.webp", "2Q5A8663.webp", "2Q5A9043.webp", "2Q5A9593.webp",
     "2Q5A0007.webp"
 ];
 
