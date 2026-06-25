@@ -17,8 +17,10 @@ const imageFiles = [
     "2Q5A7942.webp", "2Q5A8007-2.webp", "2Q5A8116.webp", "2Q5A8226.webp",
     "2Q5A8252.webp", "2Q5A8287.webp", "2Q5A8289.webp", "2Q5A8386.webp",
     "2Q5A8600.webp", "2Q5A8602-2.webp", "2Q5A8651.webp", "2Q5A8659.webp",
-    "2Q5A8663-2.webp", "2Q5A8663.webp", "2Q5A9043.webp", "2Q5A9593.webp",
-    "2Q5A0007.webp"
+    "2Q5A8663-2.webp", "2Q5A8663.webp", "2Q5A8665.webp", "2Q5A8701.webp",
+    "2Q5A8716.webp", "2Q5A8757.webp", "2Q5A8807.webp", "2Q5A9043.webp",
+    "2Q5A9428.webp", "2Q5A9459.webp", "2Q5A9544.webp", "2Q5A9593.webp",
+    "2Q5A0007.webp", "2Q5A0137.webp", "2Q5A0278.webp", "2Q5A0280.webp", "2Q5A0358.webp", "2Q5A0590.webp", "2Q5A0666-2.webp", "2Q5A0756.webp", "2Q5A0758.webp", "2Q5A0820.webp", "2Q5A0929.webp", "2Q5A0936.webp", "2Q5A1108.webp", "2Q5A1131.webp", "2Q5A1212.webp", "2Q5A1218.webp", "2Q5A1349.webp", "2Q5A1356.webp", "2Q5A1515.webp", "2Q5A1517.webp", "2Q5A1520.webp", "2Q5A1537-2.webp", "2Q5A1552.webp", "2Q5A1588.webp", "2Q5A1636.webp", "2Q5A1752.webp", "2Q5A1877.webp", "2Q5A2010.webp", "2Q5A2012-2.webp", "2Q5A2037.webp", "2Q5A2156.webp", "2Q5A2280.webp", "2Q5A2427.webp", "2Q5A2545.webp", "2Q5A2552.webp", "2Q5A2581.webp", "2Q5A2667.webp", "2Q5A2698-2.webp", "2Q5A2729-2.webp", "2Q5A2850.webp", "2Q5A2867.webp", "2Q5A3006-Enhanced-NR.webp", "2Q5A3092.webp", "2Q5A3161.webp", "2Q5A3926.webp", "2Q5A4153.webp", "2Q5A4230.webp", "2Q5A4255.webp", "2Q5A4400 (1).webp", "2Q5A4592.webp", "2Q5A4628.webp", "2Q5A5125.webp", "2Q5A5295.webp", "2Q5A5396-2.webp", "2Q5A6017.webp", "2Q5A6142-2.webp", "2Q5A6185.webp", "2Q5A6803.webp", "2Q5A6844.webp", "2Q5A7047.webp", "2Q5A7058.webp", "2Q5A7081.webp", "2Q5A7158.webp", "2Q5A7228.webp", "2Q5A7285.webp", "2Q5A7388.webp", "2Q5A7436-2.webp", "2Q5A7655.webp", "2Q5A7906.webp", "2Q5A7980.webp", "2Q5A8024.webp", "2Q5A8099.webp", "2Q5A8171-2.webp", "2Q5A8233.webp", "2Q5A8252.webp", "2Q5A8355.webp", "2Q5A8556.webp", "2Q5A8669.webp", "2Q5A8870.webp", "2Q5A8878-2.webp", "2Q5A9305.webp", "2Q5A9309.webp", "2Q5A9584.webp", "2Q5A9689.webp", "2Q5A9709.webp", "2Q5A9752.webp", "2Q5A9761.webp", "2Q5A9919.webp", "412A0433.webp", "412A0527.webp", "412A0541.webp", "412A2502.webp", "412A2732-2.webp", "412A2810.webp", "412A4586.webp", "412A4855.webp", "unnamed (1).webp"
 ];
 
     // 2. CONFIGURACIÓN (Variables locales fijas)
